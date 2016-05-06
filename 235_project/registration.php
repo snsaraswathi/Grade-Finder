@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Registration | Nova</title>
+  <title>Registration | Grade-Finder</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width">
 
@@ -24,9 +24,44 @@
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
   <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+<!--    <script src="jquery.mobile-1.4.5/demos/js/jquery.min.js"></script>-->
+<!--    <link rel="stylesheet" href="jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css">-->
+<!--    <script src="jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
+
+    <script type="text/javascript">
+        function checkPasswordMatch() {
+            var password = $("#Password").val();
+            var confirmPassword = $("#checkpassword").val();
+            var flag = false;
+
+            if (password != confirmPassword)
+            {
+                var string1="Passwords do not match!";
+                var success= string1.fontcolor("red");
+                $("#divCheckPasswordMatch").html(success);
+                flag=false;
+            }
+
+            else
+            {
+                var string2="Passwords match!";
+                var successs1= string2.fontcolor("green");
+                $("#divCheckPasswordMatch").html(successs1);
+                flag=true;
+            }
+
+            if(flag=== true)
+            {
+                document.getElementById("button_heading").disabled=false;
+            }
+
+        }
+    </script>
+
 </head>
 
 <body>
+<div data-role="page">
 
   <!--Header-->
   <header class="navbar navbar-fixed-top">
@@ -40,7 +75,7 @@
 <!--        <a id="logo" class="pull-left" href="index.html"></a>-->
         <div class="nav-collapse collapse pull-right">
           <ul class="nav">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.php">Home</a></li>
             <li class="login">
               <a data-toggle="modal" href="#loginForm"><i class="icon-lock"></i> Login</a>
             </li>
@@ -60,7 +95,7 @@
         </div>
         <div class="span6">
           <ul class="breadcrumb pull-right">
-            <li><a href="index.html">Home</a> <span class="divider">/</span></li>
+            <li><a href="index.php">Home</a> <span class="divider">/</span></li>
             <!--<li><a href="#">Pages</a> <span class="divider">/</span></li>-->
             <li class="active">Registration</li>
           </ul>
@@ -68,50 +103,59 @@
       </div>
     </div>
   </section>
-  <!-- / .title -->       
+  <!-- / .title -->
 
-
+    <div data-role="main" class="ui-content">
   <section id="registration-page" class="container">
-    <form class="center" action='' method="POST">
+    <form class="center" action="register.php" method="POST">
       <fieldset class="registration-form">
         <div class="control-group">
           <!-- Username -->
           <div class="controls">
-            <input type="text" id="username" name="username" placeholder="Username" class="input-xlarge">
+            <input type="text" id="username" name="inputFN" placeholder="First Name" class="input-xlarge">
           </div>
         </div>
+
+          <div class="controls">
+              <input type="text" id="username" name="inputLN" placeholder="Last Name" class="input-xlarge">
+          </div>
 
         <div class="control-group">
           <!-- E-mail -->
           <div class="controls">
-            <input type="text" id="email" name="email" placeholder="E-mail" class="input-xlarge">
+            <input type="text" name="inputEA" id="email" placeholder="E-mail" class="input-xlarge">
           </div>
         </div>
 
         <div class="control-group">
           <!-- Password-->
           <div class="controls">
-            <input type="password" id="password" name="password" placeholder="Password" class="input-xlarge">
+            <input type="password" name="inputPW" id="Password" placeholder="Password" class="input-xlarge">
           </div>
         </div>
 
         <div class="control-group">
           <!-- Password -->
           <div class="controls">
-            <input type="password" id="password_confirm" name="password_confirm" placeholder="Password (Confirm)" class="input-xlarge">
+            <input type="password" name="inputPW1" id="checkpassword" placeholder="Password (Confirm)" class="input-xlarge" onkeyup="checkPasswordMatch();">
           </div>
         </div>
 
-        <div class="control-group">
+          <div class="form-group" id="form_spacing">
+              <label for="message" class="form_name"  id="divCheckPasswordMatch" style="color:red"></label>
+          </div>
+
+          <div class="control-group">
           <!-- Button -->
           <div class="controls">
-            <button class="btn btn-success btn-large btn-block">Register</button>
+              <button type="submit" class="btn btn-success btn-large btn-block" name="signup" id="button_heading" disabled>SIGN UP</button>
           </div>
         </div>
       </fieldset>
     </form>
   </section>
   <!-- /#registration-page -->
+        </div>
 
 <!--Footer-->
 <footer id="footer">
@@ -155,7 +199,7 @@
     </div>
     <!--Modal Body-->
     <div class="modal-body">
-        <form class="form-inline" action="index.html" method="post" id="form-login">
+        <form class="form-inline" action="index.php" method="post" id="form-login">
             <input type="text" class="input-small" placeholder="Email">
             <input type="password" class="input-small" placeholder="Password">
             <label class="checkbox">
@@ -168,6 +212,7 @@
     <!--/Modal Body-->
 </div>
 <!--  /Login form -->
+    </div>
 
 <script src="js/vendor/jquery-1.9.1.min.js"></script>
 <script src="js/vendor/bootstrap.min.js"></script>

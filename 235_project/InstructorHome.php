@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta charset="utf-8">
+    <title>Grade Calculator</title>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+    <script src="js/app.js"></script>
+    <link rel="stylesheet" href="css/index.css" />
+</head>
+<body>
+<div data-role="page"  id="mainPage">
+    <div data-role="header" data-position="fixed" data-theme="c">
+        <h1>Grade Factory</h1>
+        <h2 style="color:#FFFFCC;" id="settingsSuccess"></h2>
+        <a href="#loginPage" id='logoutButton' data-theme="c" class="ui-btn-left" data-role="button" data-icon="gear"
+           style="background: gray;text-shadow: none;">Logout</a>
+        <a href="#settingsPage" id='settingsButton' data-theme="c" class="ui-btn-right" data-role="button" data-icon="gear"
+           style="background: gray;text-shadow: none;">Settings</a>
+    </div>
+    <div id="settingsSuccessId" style="display:none;">
+        <h2 style="color:white;" id="error" data-icon="check" class="toast">Settings Saved</h2>
+    </div>
+
+    <div data-role="content" class="">
+        <form>
+            <div id="computeSuccessId" style="display:none;">
+                <h2 style="color:white;" id="error" data-icon="check" class="toast">Grade computed</h2>
+            </div>
+            <div id="computeError" style="display:none;">
+                <h2 style="color:red;" id="compute_error" class="toast">Error! Try again later</h2>
+            </div>
+            <div data-role="fieldcontain">
+                <label for="firstname">First Name:</label>
+                <input type="text" id="firstname_prof"  name="firstname" data-theme="c" readonly>
+            </div>
+            <div data-role="fieldcontain">
+                <label for=>Last Name:</label>
+                <input type="text" id="lastname_prof" data-theme="c" readonly>
+            </div>
+            <div data-role="fieldcontain">
+                <label>Email:</label>
+                <input type="text" id="email_prof" data-theme="c" readonly>
+            </div>
+            <div data-role="fieldcontain">
+                <label>Phone:</label>
+                <input type="text" id="phone_prof" data-theme="c" readonly>
+            </div>
+            <div data-role="fieldcontain">
+                <label>ID:</label>
+                <input type="text" id="id-info_prof"  data-theme="c" readonly>
+            </div>
+            <div data-role="fieldcontain">
+                <label>Class Description:</label>
+                <textarea id="class-description_prof" data-theme="c" readonly  rows="6" cols="32" style="background:transparent; font-color:white;">
+                  Class Description
+                </textarea>
+            </div>
+            <div data-role="fieldcontain">
+                <label for="student-id">Student Id</label>
+                <input type="text" id="student-id_prof" data-theme="c">
+            </div>
+            <div data-role="fieldcontain">
+                <label for="homework">Homework:</label>
+                <input type="text" id="homeworks_prof" data-theme="c">
+            </div>
+            <div data-role="fieldcontain">
+                <label for="lab">Lab:</label>
+                <input type="text" id="labs_prof" data-theme="c">
+            </div>
+            <div data-role="fieldcontain">
+                <label for="midterm">Midterm:</label>
+                <input type="text" id="midterm_prof" data-theme="c">
+            </div>
+            <div data-role="fieldcontain">
+                <label for="presentation">Presentation:</label>
+                <input type="text" id="presentation_prof" data-theme="c">
+            </div>
+            <div data-role="fieldcontain">
+                <label for="project">Project:</label>
+                <input type="text" id="project_prof" data-theme="c">
+            </div>
+            <div data-role="fieldcontain">
+                <label for="final">Final:</label>
+                <input type="text" id="final_prof" data-theme="c">
+            </div>
+            <div style="margin-left:4.5rem">
+                <input type="button" id="computeGrade" data-role="button" data-theme="b" data-inline="true" data-icon="check" value="Compute Grade">
+            </div>
+            <div data-role="fieldcontain">
+                <label>Final Grade:</label>
+                <input type="text" id="finalgrade_prof" data-theme="c">
+            </div>
+        </form>
+    </div>
+
+</div>
+<!--settings page-->
+<div data-role="page" id="settingsPage" data-add-back-btn="true" >
+    <div data-role="header" data-position="fixed" data-theme="c">
+        <a href="#mainPage" id="cancelSettings" data-theme="c" data-icon="home" style="background: gray;text-shadow: none;height: 0.5rem;padding-bottom: 0.9rem;padding-top: 0.17rem;" data-role="button">Home</a>
+        <h1>Grade - Settings</h1>
+    </div>
+    <div id="settingsError" style="display:none;">
+        <h2 style="color:red;" id="error" class="toast">Error! Please try again</h2>
+    </div>
+    <div id="scalingError" style="display:none;">
+        <h2 style="color:red;" id="error" class="toastLogin">Error! Please try again</h2>
+    </div>
+    <div data-role="content" class="">
+        <label id="configure_points"><b>Configure Points<b></label>
+        <hr>
+        <form>
+            <div data-role="fieldcontain">
+                <label for="hw_points">Homeworks</label>
+                <input type="range" name="hw_points" id="hw_points" data-clear-btn="true" min="0" max="500"  value="100" data-highlight="true" step="1" data-popup-enabled="true" />
+            </div>
+            <div data-role="fieldcontain">
+                <label for="lab_points">Labs</label>
+                <input type="range" name="lab_points" id="lab_points" data-clear-btn="true" min="0" max="500"  value="100" data-highlight="true" step="1" data-popup-enabled="true" />
+            </div>
+            <div data-role="fieldcontain">
+                <label for="project_points">Project</label>
+                <input type="range" name="project_points" id="project_points" data-clear-btn="true" min="0" max="500"  value="100" data-highlight="true" step="1" data-popup-enabled="true" />
+            </div>
+            <div data-role="fieldcontain">
+                <label for="present_points">Presentation</label>
+                <input type="range" name="present_points" id="present_points" data-clear-btn="true" min="0" max="500"  value="100" data-highlight="true" step="1" data-popup-enabled="true" />
+            </div>
+            <div data-role="fieldcontain">
+                <label for="mid_points">Midterm</label>
+                <input type="range" name="mid_points" id="mid_points" data-clear-btn="true" min="0" max="500"  value="100" data-highlight="true" step="1" data-popup-enabled="true" />
+            </div>
+            <div data-role="fieldcontain">
+                <label for="final_points">Final</label>
+                <input type="range" name="final_points" id="final_points" data-clear-btn="true" min="0" max="500"  value="100" data-highlight="true" step="1" data-popup-enabled="true" />
+            </div>
+        </form>
+        <br>
+        <label id="configure_scaling_factor"><b>Configure Scaling Factors<b></label>
+        <hr>
+        <form>
+            <div data-role="fieldcontain">
+                <label for="hw_sf">Homeworks</label>
+                <input type="range" name="hw_sf" id="hw_sf" data-clear-btn="true" min="0" max="100"  value="10" data-highlight="true" step="1" data-popup-enabled="true" />
+            </div>
+            <div data-role="fieldcontain">
+                <label for="lab_sf">Labs</label>
+                <input type="range" name="lab_sf" id="lab_sf" data-clear-btn="true" min="0" max="100"  value="40" data-highlight="true" step="1" data-popup-enabled="true" />
+            </div>
+            <div data-role="fieldcontain">
+                <label for="project_sf">Project</label>
+                <input type="range" name="project_sf" id="project_sf" data-clear-btn="true" min="0" max="100"  value="20" data-highlight="true" step="1" data-popup-enabled="true" />
+            </div>
+            <div data-role="fieldcontain">
+                <label for="present_sf">Presentation</label>
+                <input type="range" name="present_sf" id="present_sf" data-clear-btn="true" min="0" max="100"  value="10" data-highlight="true" step="1" data-popup-enabled="true" />
+            </div>
+            <div data-role="fieldcontain">
+                <label for="mid_sf">Midterm</label>
+                <input type="range" name="mid_sf" id="mid_sf" data-clear-btn="true" min="0" max="100"  value="10" data-highlight="true" step="1" data-popup-enabled="true" />
+            </div>
+            <div data-role="fieldcontain">
+                <label for="final_sf">Final</label>
+                <input type="range" name="final_sf" id="final_sf" data-clear-btn="true" min="0" max="100"  value="10" data-highlight="true" step="1" data-popup-enabled="true" />
+            </div>
+        </form>
+        <br>
+        <label id="configure_grades"><b>Configure Grades<b></label>
+        <hr>
+        <form>
+            <div data-role="rangeslider" data-theme="c" >
+                <label for="Agrade-1a">A Grade:</label>
+                <input name="Agrade-1a" id="Agrade-1a" min="0" max="100" value="90" type="range" step="1"   />
+                <label for="Agrade-1b">A Grade:</label>
+                <input name="Agrade-1b" id="Agrade-1b" min="0" max="100" value="100" type="range" step="1"  />
+            </div>
+            <div data-role="rangeslider">
+                <label for="Bgrade-1a">B Grade:</label>
+                <input name="Bgrade-1a" id="Bgrade-1a" min="0" max="100" value="80" type="range" step="1"  />
+                <label for="Bgrade-1b">B Grade:</label>
+                <input name="Bgrade-1b" id="Bgrade-1b" min="0" max="100" value="89" type="range" step="1"  />
+            </div>
+            <div data-role="rangeslider">
+                <label for="Cgrade-1a">C Grade:</label>
+                <input name="Cgrade-1a" id="Cgrade-1a" min="0" max="100" value="70" type="range" step="1"  />
+                <label for="Cgrade-1b">C Grade:</label>
+                <input name="Cgrade-1b" id="Cgrade-1b" min="0" max="100" value="79" type="range" step="1"  />
+            </div>
+            <div data-role="rangeslider">
+                <label for="Dgrade-1a">D Grade:</label>
+                <input name="Dgrade-1a" id="Dgrade-1a" min="0" max="100" value="60" type="range" step="1"  />
+                <label for="Dgrade-1b">D Grade:</label>
+                <input name="Dgrade-1b" id="Dgrade-1b" min="0" max="100" value="69" type="range" step="1"  />
+            </div>
+        </form>
+    </div>
+    <div data-role="content" style="align:center;">
+        <input type="button" id='saveButton' data-inline="true" data-role="button" data-icon="check" value="Save" data-theme="b" >
+    </div>
+</div>
+</body>
+</html>
