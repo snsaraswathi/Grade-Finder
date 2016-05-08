@@ -6,12 +6,14 @@
 
         var checkLogin= function()
         {
+
             var $username = $('#username').val();
             var $password = $('#password').val();
-            $.getJSON('http://poojaindi.com/project/login.php?callback=?',
+            $.getJSON('http://snsaraswathi.com/Grade-Finder/235_project/php/login.php?callback=?',
                 'username='+$username+'&password='+$password,function(result){
                     if(result.error)
                     {
+                        alert("wrong pswd/username");
                         //error
                         $('#error').text(result.error);
                         $('#loginSuccessId').css('display','block');
@@ -19,6 +21,7 @@
                     }
                     else
                     {
+
                         var type = result.type;
                         if(type == 1)
                         {
@@ -27,7 +30,7 @@
                             $('#phone').val(result.phone);
                             $('#email').val(result.email);
                             $('#id-info').val($username);
-                            $.getJSON('http://vangumalli.com/project/class_description.php?callback=?',
+                            $.getJSON('http://snsaraswathi.com/Grade-Finder/235_project/php/class_description.php?callback=?',
                                 'class_id=235',function(classResult){
                                     $('#class-description').val(classResult.class_description);
                                 });
@@ -46,7 +49,7 @@
                             $('#phone_prof').val(result.phone);
                             $('#email_prof').val(result.email);
                             $('#id-info_prof').val($username);
-                            $.getJSON('http://vangumalli.com/project/class_description.php?callback=?',
+                            $.getJSON('http://snsaraswathi.com/Grade-Finder/235_project/php/class_description.php?callback=?',
                                 'class_id=235',function(classResult){
                                     $('#class-description_prof').val(classResult.class_description);
                                 });
@@ -57,7 +60,7 @@
         };
         var getGrades = function(classId)
         {
-            $.getJSON('http://vangumalli.com/project/class_description.php?callback=?',
+            $.getJSON('http://snsaraswathi.com/Grade-Finder/235_project/php/class_description.php?callback=?',
                 'class_id='+classId,function(classResult){
                     $('#class-description').val(classResult.class_description);
                 });
@@ -70,14 +73,14 @@
         };
 
         var getCourseDescription = function(classId){
-            $.getJSON('http://vangumalli.com/project/class_description.php?callback=?',
+            $.getJSON('http://snsaraswathi.com/Grade-Finder/235_project/php/class_description.php?callback=?',
                 'class_id='+classId,function(classResult){
                     $('#class-description_prof').val(classResult.class_description);
                 });
         }
 
         var getConfigurations = function(){
-            $.getJSON('http://vangumalli.com/project/class.php?callback=?',
+            $.getJSON('http://snsaraswathi.com/Grade-Finder/235_project/php/class.php?callback=?',
                 'class_id=235',function(result){
 
                     $('#hw_points').val(result.homework_max).slider("refresh");
@@ -125,7 +128,7 @@
             var percentage_sum = parseInt($max_final_sf)+parseInt($max_mid_sf)+parseInt($max_homework_sf)+parseInt($max_labs_sf)+parseInt($max_project_sf)+parseInt($max_present_sf);
             if(percentage_sum==100)
             {
-                $.getJSON('http://vangumalli.com/project/save-settings.php?callback=?',
+                $.getJSON('http://snsaraswathi.com/Grade-Finder/235_project/php/save-settings.php?callback=?',
                     'class_id=235'+'&max_homework_points='+$max_homework_points+'&max_labs_points='+$max_labs_points+"&max_project_points="+$max_project_points+
                     '&max_present_points='+$max_present_points+'&max_mid_points='+$max_mid_points+"&max_final_points="+$max_final_points+
                     '&max_homework_sf='+$max_homework_sf+'&max_labs_sf='+$max_labs_sf+"&max_project_sf="+$max_project_sf+
@@ -164,7 +167,7 @@
             var $pres_points = $('#presentation_prof').val();
             var $final_points = $('#final_prof').val();
 
-            $.getJSON('http://vangumalli.com/project/validate_grades.php?callback=?',
+            $.getJSON('http://snsaraswathi.com/Grade-Finder/235_project/php/validate_grades.php?callback=?',
                 'class_id=235',function(result){
                     if(result.error)
                     {
@@ -229,7 +232,7 @@
                         }
                         else
                         {
-                            $.getJSON('http://vangumalli.com/project/save-grades.php?callback=?',
+                            $.getJSON('http://snsaraswathi.com/Grade-Finder/235_project/php/save-grades.php?callback=?',
                                 'class_id=235'+'&student_id='+$student_id+'&homework_points='+$homework_points+'&labs_points='+$labs_points+'&project_points='+$project_points+'&pres_points='+$pres_points+'&mid_points='+$mid_points+'&final_points='+$final_points,function(result){
                                     if(result.msg)
                                     {
@@ -274,7 +277,7 @@
             var $pres_points = $('#presentation').val();
             var $final_points = $('#final').val();
 
-            $.getJSON('http://vangumalli.com/project/validate_grades.php?callback=?',
+            $.getJSON('http://snsaraswathi.com/Grade-Finder/235_project/php/validate_grades.php?callback=?',
                 'class_id=235',function(result){
                     if(result.error)
                     {

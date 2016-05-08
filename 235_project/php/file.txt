@@ -1,0 +1,1 @@
+100100UPDATE student_grade SET homeworks=100,labs=200,project=100,presentation=100,midterm=100,final=100 where class_id =235 and student_id =1001
