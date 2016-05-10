@@ -31,13 +31,13 @@ $result = $conn->query($query);
 if($result>0)
 {
   $array = array(
-    msg=>"true"
+    "msg"=>"true"
   );
 }
 else
 {
   $array = array(
-    msg=>"false"
+    "msg"=>"false"
   );
 }
 header('content-type: application/json; charset=utf-8');
